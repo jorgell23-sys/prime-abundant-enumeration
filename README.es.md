@@ -1,5 +1,9 @@
 # prime-abundant-enumeration
 
+> **¿Es tu primer contacto con el tema?** Hay una explicación desde cero,
+> con dibujos y sin requisitos previos, en <https://jorgell23-sys.github.io/prime-abundant-enumeration/es/>
+> (y en inglés en [`/`](https://jorgell23-sys.github.io/prime-abundant-enumeration/)).
+
 <!-- hallazgo:que -->
 ## Qué se encontró
 
@@ -118,6 +122,7 @@ numbers.»*
 | `verify.py` | todos los controles, sin dependencias, en segundos |
 | `src/enumerate_sf.py` | el enumerador, sólo biblioteca estándar |
 | `data/` | los términos y los conteos, generados por código |
+| `docs/` | **una explicación desde cero, para quien no conoce el tema** &mdash; publicada en <https://jorgell23-sys.github.io/prime-abundant-enumeration/es/> |
 | `RESULT.md` | el enunciado completo, las pruebas y los límites |
 | `PRIOR_ART.md` | qué se buscó, dónde, y el control positivo |
 

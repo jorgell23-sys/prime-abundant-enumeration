@@ -2,6 +2,9 @@
 
 **Jorge Ellena Godoy** — 2026-09-10
 
+> An explanation of all of this from scratch, for a reader new to the
+> subject, is at <https://jorgell23-sys.github.io/prime-abundant-enumeration/> (Spanish at `/es/`).
+
 <!-- hallazgo:que -->
 ## What was found
 
