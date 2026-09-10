@@ -2,7 +2,7 @@
   "title": "Prime-abundant numbers enumerated without sieving, to 10^13",
   "upload_type": "dataset",
   "license": "cc-by-4.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "language": "eng",
   "creators": [
     {
@@ -22,6 +22,16 @@
     "OEIS A175200"
   ],
   "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22692700",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/jorgell23-sys/prime-abundant-enumeration",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
     {
       "identifier": "10.1515/integers-2012-0044",
       "relation": "cites",

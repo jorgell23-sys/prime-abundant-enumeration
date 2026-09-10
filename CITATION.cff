@@ -18,7 +18,16 @@ authors:
     given-names: "Jorge"
     email: "jorgell23@gmail.com"
 license: CC-BY-4.0
-version: 1.0.0
+doi: "10.5281/zenodo.22692700"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22692700"
+    description: "concept DOI, always the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22692701"
+    description: "DOI of the first archived version (1.0.0)"
+version: 1.0.1
+date-released: 2026-09-10
 keywords:
   - number theory
   - arithmetic functions

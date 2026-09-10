@@ -122,7 +122,12 @@ prime-abundant numbers."*
 
 ## Citing
 
-See `CITATION.cff`.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22692700.svg)](https://doi.org/10.5281/zenodo.22692700)
+
+> Ellena Godoy, Jorge (2026). *Prime-abundant numbers enumerated without
+> sieving, to 10^13*. Zenodo. https://doi.org/10.5281/zenodo.22692700
+
+The DOI above is the **concept** DOI and always resolves to the latest version.
 
 ## Author
 
