@@ -4,6 +4,10 @@
 > pictures and no prerequisites, at <https://jorgell23-sys.github.io/prime-abundant-enumeration/>
 > (and in Spanish at [`/es/`](https://jorgell23-sys.github.io/prime-abundant-enumeration/es/)).
 
+<!-- explicacion -->
+**New to this? It is explained from scratch, assuming nothing:**
+[English](https://jorgell23-sys.github.io/prime-abundant-enumeration/) · [Español](https://jorgell23-sys.github.io/prime-abundant-enumeration/es/)
+
 <!-- hallazgo:que -->
 ## What was found
 

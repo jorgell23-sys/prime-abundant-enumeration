@@ -5,6 +5,10 @@
 > An explanation of all of this from scratch, for a reader new to the
 > subject, is at <https://jorgell23-sys.github.io/prime-abundant-enumeration/> (Spanish at `/es/`).
 
+<!-- explicacion -->
+**New to this? It is explained from scratch, assuming nothing:**
+[English](https://jorgell23-sys.github.io/prime-abundant-enumeration/) · [Español](https://jorgell23-sys.github.io/prime-abundant-enumeration/es/)
+
 <!-- hallazgo:que -->
 ## What was found
 

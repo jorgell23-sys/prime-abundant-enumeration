@@ -4,6 +4,10 @@
 > con dibujos y sin requisitos previos, en <https://jorgell23-sys.github.io/prime-abundant-enumeration/es/>
 > (y en inglés en [`/`](https://jorgell23-sys.github.io/prime-abundant-enumeration/)).
 
+<!-- explicacion -->
+**¿No sos del tema? Esto está explicado desde cero, sin dar nada por sabido:**
+[English](https://jorgell23-sys.github.io/prime-abundant-enumeration/) · [Español](https://jorgell23-sys.github.io/prime-abundant-enumeration/es/)
+
 <!-- hallazgo:que -->
 ## Qué se encontró
 
