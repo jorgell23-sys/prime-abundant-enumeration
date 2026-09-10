@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los números prime-abundant, explicados desde cero</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.2rem 5rem;
+         font: 17px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: .4em 0 .2em; }
+  h2 { font-size: 1.25rem; margin: 2.2em 0 .4em; }
+  h3 { font-size: 1rem; margin: 1.4em 0 .3em; }
+  .lead { font-size: 1.1rem; opacity: .85; }
+  code, .m { font-family: ui-monospace, "SF Mono", Menlo, monospace;
+             font-size: .93em; }
+  figure { margin: 1.6em 0; }
+  img { width: 100%; height: auto; }
+  figcaption { font-size: .88rem; opacity: .75; margin-top: .4em; }
+  table { border-collapse: collapse; width: 100%; font-size: .94rem;
+          margin: 1em 0; }
+  th, td { text-align: right; padding: .35em .6em;
+           border-bottom: 1px solid rgba(128,128,128,.3); }
+  th:first-child, td:first-child { text-align: left; }
+  .box { border-left: 3px solid #1f77b4; padding: .1em 0 .1em 1em;
+         margin: 1.4em 0; opacity: .95; }
+  .warn { border-left-color: #d62728; }
+  dl dt { font-weight: 600; margin-top: .8em; }
+  dl dd { margin: 0 0 0 1.2em; opacity: .9; }
+  a { color: #1f77b4; }
+  .lang { font-size: .9rem; opacity: .8; }
+</style>
+</head>
+<body>
+
+<p class="lang"><a href="../">Read in English</a></p>
+
+<h1>Números que comparten sus primos con la suma de sus divisores</h1>
+
+<p class="lead">Esta página explica, desde cero, qué se encontró y cómo podés
+comprobarlo vos. No se supone nada más que saber qué es un número primo.</p>
+
+<h2 id="pregunta">1. La pregunta, con peras y manzanas</h2>
+
+<p>Tomá un número, digamos <span class="m">12</span>. Sumá todos los números que
+lo dividen, él incluido: <span class="m">1 + 2 + 3 + 4 + 6 + 12 = 28</span>. Los
+matemáticos escriben esa suma <span class="m">&sigma;(12) = 28</span>.</p>
+
+<p>Ahora compará los <em>primos</em> que aparecen. Los primos de
+<span class="m">12 = 2&sup2; &middot; 3</span> son 2 y 3. Los de
+<span class="m">28 = 2&sup2; &middot; 7</span> son 2 y 7. El primo 3 está en
+<span class="m">12</span> y <strong>no</strong> está en <span class="m">28</span>.</p>
+
+<p>A veces eso no pasa. Tomá <span class="m">6</span>:
+<span class="m">&sigma;(6) = 1 + 2 + 3 + 6 = 12</span>, cuyos primos son 2 y 3 —
+exactamente los primos de 6. Todo primo del número es también primo de la
+suma.</p>
+
+<p><strong>Esos números tienen nombre</strong>: se llaman
+<em>prime-abundant</em>, y la pregunta es simplemente <em>cuáles son, y cuántos
+hay por debajo de un tamaño dado</em>.</p>
+
+<h2 id="palabras">2. Las palabras que hacen falta, y ninguna más</h2>
+
+<dl>
+  <dt>Primo</dt>
+  <dd>Un número mayor que 1 divisible sólo por 1 y por sí mismo: 2, 3, 5, 7,
+      11…</dd>
+  <dt><span class="m">&sigma;(n)</span></dt>
+  <dd>La suma de todos los divisores de <span class="m">n</span>, él incluido.
+      <span class="m">&sigma;(10) = 1 + 2 + 5 + 10 = 18</span>.</dd>
+  <dt><span class="m">rad(n)</span>, el radical</dt>
+  <dd>Multiplicá los primos distintos de <span class="m">n</span>, cada uno una
+      vez. <span class="m">rad(12) = 2 &middot; 3 = 6</span> y
+      <span class="m">rad(8) = 2</span>. Es el número sin repeticiones.</dd>
+  <dt>Prime-abundant</dt>
+  <dd><span class="m">rad(n)</span> divide a <span class="m">&sigma;(n)</span>.
+      Lo mismo que decir: todo primo de <span class="m">n</span> es primo de
+      <span class="m">&sigma;(n)</span>.</dd>
+  <dt>Cribar</dt>
+  <dd>La forma obvia de encontrarlos: probar 2, después 3, después 4, después
+      5… y quedarse con los que pasan. Funciona, y es lo que se queda sin
+      aire.</dd>
+</dl>
+
+<h2 id="receta">3. La receta, paso a paso</h2>
+
+<p>Todo el hallazgo sale de leer la condición al revés.</p>
+
+<p>Supongamos que <span class="m">n</span> es prime-abundant y que
+<span class="m">p</span> es uno de sus primos. Entonces <span class="m">p</span>
+divide a <span class="m">&sigma;(n)</span>. Pero <span class="m">&sigma;</span>
+se parte en un producto sobre las potencias de primo de <span class="m">n</span>,
+y un primo divide a un producto sólo si divide a alguno de los factores.
+Entonces:</p>
+
+<div class="box">
+<p><strong>Todo primo de <span class="m">n</span> aparece cuando factorizás
+<span class="m">&sigma;(q<sup>a</sup>)</span> de otra potencia de primo
+<span class="m">q<sup>a</sup></span> de <span class="m">n</span>.</strong>
+Ninguno es libre. Todos están ya ahí, esperando dentro de una
+factorización.</p>
+</div>
+
+<p>Dibujalo: poné los primos de <span class="m">n</span> como puntos, y una
+flecha de <span class="m">q</span> a <span class="m">p</span> cada vez que
+<span class="m">p</span> divide a <span class="m">&sigma;(q<sup>a</sup>)</span>.
+La condición se vuelve visual: <strong>todo punto tiene que tener una flecha
+que entre</strong>.</p>
+
+<figure>
+  <img src="../digraph.svg" alt="Dos diagramas. A la izquierda, 6 = 2·3 con
+       flechas en las dos direcciones entre 2 y 3. A la derecha, 12 = 2²·3, con
+       una flecha de 3 a 2 pero nada que llegue al 3.">
+  <figcaption>La regla, dibujada. A la izquierda los dos primos están cubiertos
+  y el 6 pertenece. A la derecha el 3 no tiene flecha entrante — y en efecto
+  <span class="m">&sigma;(12) = 28</span> no es divisible por
+  <span class="m">rad(12) = 6</span>.</figcaption>
+</figure>
+
+<p>Y un diagrama donde todo punto tiene flecha entrante tiene que contener un
+<strong>lazo</strong>: empezá en cualquier lado, caminá hacia atrás por las
+flechas, y como hay finitos puntos en algún momento tenés que repetir uno. Así
+que todo <span class="m">n</span> de éstos está hecho de lazos, más lo que
+cuelga de ellos.</p>
+
+<p><strong>Ésa es la receta.</strong> En vez de probar todos los enteros, se
+arman los lazos — y cada primo que hace falta sale de una factorización que ibas
+a hacer igual.</p>
+
+<h2 id="probalo">4. Hacé uno a mano</h2>
+
+<p>Arrancá de <span class="m">24 = 2&sup3; &middot; 3</span>. Es
+prime-abundant: <span class="m">&sigma;(24) = 60</span> y
+<span class="m">rad(24) = 6</span>, y 6 divide a 60.</p>
+
+<p>Ahora factorizá <span class="m">&sigma;(2&sup3;) = 1+2+4+8 = 15 = 3 &middot; 5</span>.
+Ahí aparece el primo <strong>5</strong>, y 5 no divide a 24. Entonces pegalo: en
+<span class="m">24 &middot; 5 = 120</span> el punto nuevo 5 tiene flecha
+entrante (del 2), y los puntos viejos conservan las suyas, porque sus exponentes
+no cambiaron.</p>
+
+<p>Comprobalo: <span class="m">rad(120) = 30</span> y
+<span class="m">&sigma;(120) = 360 = 12 &middot; 30</span>. Funciona. Y el mismo
+argumento vale para <span class="m">24 &middot; 25 = 600</span> y
+<span class="m">24 &middot; 125 = 3000</span>, para siempre — lo que demuestra
+en un renglón que hay infinitos.</p>
+
+<h2 id="origen">5. De dónde sale la información</h2>
+
+<p>Nada de acá está citado de memoria. Tres fuentes, todas comprobables:</p>
+
+<ul>
+  <li>Los <strong>términos y conteos</strong> de <code>data/</code> los produce
+      el programa de <code>src/</code>, no están tipeados.</li>
+  <li>La <strong>entrada del catálogo</strong> es
+      <a href="https://oeis.org/A175200">OEIS A175200</a>, dada de alta en 2010,
+      con una tabla de <span data-fact="bfile_terms">10.000</span> términos
+      calculada por Donovan Johnson, el mayor de los cuales es
+      <span data-fact="bfile_last">7.271.402.112</span>.</li>
+  <li>Los <strong>conteos publicados</strong> son de Pollack y Pomerance,
+      <em>Prime-Perfect Numbers</em>, INTEGERS 12A (2012): hasta
+      <span class="m">10<sup>9</sup></span> hay
+      <span data-fact="pp_1e9">198</span> prime-perfect y
+      <span data-fact="pa_1e9">5.328</span> prime-abundant.</li>
+</ul>
+
+<p>Esa última línea es el anclaje: nuestro programa reproduce los dos números
+exactos. Un método que coincide con un conteo publicado es un método en el que
+se puede empezar a confiar.</p>
+
+<h2 id="hallazgos">6. Qué se encontró</h2>
+
+<p>La lista llega ahora a <span class="m">10<sup>13</sup></span> en vez de
+<span class="m">10<sup>7</sup></span>:
+<span data-fact="terms_1e13">85.695</span> términos, contra los
+<span class="m">10.000</span> publicados.</p>
+
+<figure>
+  <img src="../growth.svg" alt="Gráfico log-log de cuántos prime-abundant y
+       prime-perfect hay por debajo de x, de 10^2 a 10^13. Las dos curvas suben
+       y se van doblando hacia abajo.">
+  <figcaption>Cómo crece el conteo. Las dos curvas se doblan: los números se
+  vuelven más raros a medida que subís, y siguen volviéndose más raros sin
+  estabilizarse en ningún lado.</figcaption>
+</figure>
+
+<p>El segundo hallazgo es negativo, y es el más interesante. La misma
+construcción vale para otras funciones en lugar de
+<span class="m">&sigma;</span> — y <strong>nada simple predice cuántos elementos
+tiene cada una</strong>. Dos funciones pueden tener <em>exactamente los mismos
+primos y las mismas flechas</em> y diferir en un factor 27.</p>
+
+<figure>
+  <img src="../gap.svg" alt="Dos barras que comparan las dos funciones
+       ciclotómicas: Phi_3 con 2.220 elementos por debajo de 10^10 y Phi_6 con
+       81.">
+  <figcaption>Por qué: las flechas de <span class="m">&Phi;<sub>6</sub></span>
+  piden una cuarta potencia donde las de
+  <span class="m">&Phi;<sub>3</sub></span> piden una primera. Su menor elemento
+  es <span data-fact="smallest_phi6">100.009</span> en vez de 39 — y un
+  exponente alto es un número grande. Una densidad cuenta <em>si</em> la flecha
+  existe, nunca <em>a qué altura</em>.</figcaption>
+</figure>
+
+<p>Se probaron seis explicaciones candidatas sobre
+<span data-fact="functions">30</span> funciones y las seis fallaron, cada una
+contra una regla escrita antes de mirar los datos.</p>
+
+<h2 id="comprobar">7. Cómo se sabe que no está mal</h2>
+
+<p>Todos los controles comparan <strong>conjuntos, elemento por
+elemento</strong> — nunca tamaños. Un enumerador que pierde un elemento y agrega
+otro cuenta igual y está mal. (Durante este trabajo, un control informó los tres
+totales correctos con las tres listas corridas en dos. Sólo comparar los
+conjuntos lo destapó.)</p>
+
+<table>
+  <tr><th>contra qué</th><th>hasta</th><th>resultado</th></tr>
+  <tr><td>una criba común sobre todos los enteros</td><td>10<sup>7</sup></td>
+      <td>idénticos</td></tr>
+  <tr><td>una criba segmentada independiente</td><td>10<sup>10</sup></td>
+      <td>idénticos</td></tr>
+  <tr><td>la tabla de OEIS de Donovan Johnson</td><td>7.271.402.112</td>
+      <td>idénticos</td></tr>
+  <tr><td>los conteos publicados por Pollack y Pomerance</td>
+      <td>10<sup>9</sup></td><td>exactos</td></tr>
+</table>
+
+<p>Más allá de <span class="m">10<sup>10</sup></span> cada término se vuelve a
+comprobar por su lado, factorizándolo de cero. Cero fallas en 207.284 términos.
+Y podés correrlo todo:</p>
+
+<pre><code>python verify.py</code></pre>
+
+<h2 id="sirve">8. Para qué sirve</h2>
+
+<p>Tres cosas, honestamente chicas:</p>
+
+<ul>
+  <li><strong>Más datos sobre una pregunta abierta.</strong> Pomerance conjeturó
+      en los años setenta que estos números son más raros que cualquier potencia
+      de <span class="m">x</span>. Cuatro décadas más de conteos son cuatro
+      décadas más de evidencia contra la cual probar eso.</li>
+  <li><strong>Un método que se transporta.</strong> El mismo argumento vale para
+      cualquier función multiplicativa que nunca comparta un primo con su propio
+      argumento.</li>
+  <li><strong>Un terreno despejado.</strong> Saber cuáles seis explicaciones
+      <em>fallan</em> le ahorra a la persona siguiente probarlas.</li>
+</ul>
+
+<h2 id="nodice">9. Qué <em>no</em> dice</h2>
+
+<div class="box warn">
+<ul>
+  <li><strong>No dice que el método sea nuevo.</strong> Sale directamente de una
+      caracterización que no es nueva. No se encontró ninguna versión publicada —
+      que no es lo mismo que no haberla.</li>
+  <li><strong>No demuestra nada sobre el infinito.</strong> Los conteos terminan
+      en <span class="m">10<sup>13</sup></span>. Lo que pasa más allá no está
+      medido, y medir no es demostrar.</li>
+  <li><strong>No predice cuántos hay.</strong> Se descartaron seis
+      explicaciones; la mejor que quedó yerra un factor 2,3.</li>
+  <li><strong>El control exhaustivo se detiene en
+      <span class="m">10<sup>10</sup></span>.</strong> De ahí en adelante cada
+      término se verifica de a uno — lo que atrapa entradas equivocadas, no
+      entradas faltantes.</li>
+</ul>
+</div>
+
+<h2 id="glosario">Glosario</h2>
+
+<dl>
+  <dt>Divisor</dt><dd>Un número que divide a otro exactamente. Los divisores de
+    6 son 1, 2, 3 y 6.</dd>
+  <dt>Potencia de primo</dt><dd>Un primo multiplicado por sí mismo unas cuantas
+    veces: <span class="m">2&sup3; = 8</span>.</dd>
+  <dt>Función multiplicativa</dt><dd>Una donde
+    <span class="m">f(ab) = f(a)f(b)</span> siempre que <span class="m">a</span>
+    y <span class="m">b</span> no compartan primos. <span class="m">&sigma;</span>
+    lo es.</dd>
+  <dt>Número perfecto</dt><dd>Uno igual a la suma de sus divisores
+    <em>propios</em>: 6, 28, 496. Todo perfecto par es prime-abundant.</dd>
+  <dt>Grafo dirigido</dt><dd>Puntos con flechas entre ellos. Acá los puntos son
+    primos.</dd>
+  <dt>Ciclo</dt><dd>Un paseo cerrado por las flechas, que vuelve a donde
+    empezó.</dd>
+</dl>
+
+<h2 id="biblio">Dónde seguir leyendo</h2>
+
+<h3>Si arrancás de cero</h3>
+<ul>
+  <li>OEIS, <a href="https://oeis.org/A000203">A000203</a> — la función suma de
+      divisores, con ejemplos.</li>
+  <li>OEIS, <a href="https://oeis.org/A007947">A007947</a> — el radical.</li>
+  <li>OEIS, <a href="https://oeis.org/A175200">A175200</a> — la sucesión de la
+      que trata esta página.</li>
+</ul>
+
+<h3>Si tenés algo de matemática universitaria</h3>
+<ul>
+  <li>G. H. Hardy y E. M. Wright, <em>An Introduction to the Theory of
+      Numbers</em>, los capítulos de funciones multiplicativas y números
+      perfectos.</li>
+  <li>OEIS, <a href="https://oeis.org/A007691">A007691</a> — los multiperfectos,
+      que son un subconjunto de éstos.</li>
+</ul>
+
+<h3>La literatura de investigación</h3>
+<ul>
+  <li>Paul Pollack y Carl Pomerance, <em>Prime-Perfect Numbers</em>, INTEGERS
+      <strong>12A</strong> (2012), paper A14.
+      <a href="https://doi.org/10.1515/integers-2012-0044">doi:10.1515/integers-2012-0044</a>
+      — las definiciones, las cotas y la conjetura.</li>
+  <li>Las demostraciones y los datos completos de esta página:
+      <a href="../../RESULT.md">RESULT.md</a>. Qué se buscó y qué no se
+      encontró: <a href="../../PRIOR_ART.md">PRIOR_ART.md</a>.</li>
+</ul>
+
+<hr>
+<p class="lang"><strong>Jorge Ellena Godoy</strong> — responsable de la
+corrección de todo lo publicado acá. El diseño del sistema y la dirección de la
+investigación son del autor; los resultados matemáticos los produjo un sistema
+automático (Claude, Anthropic) bajo esa dirección.</p>
+
+</body>
+</html>

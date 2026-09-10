@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+title: "Prime-abundant numbers enumerated without sieving, to 10^13"
+message: "If you use this work, please cite it as below."
+type: dataset
+abstract: >-
+  The prime-abundant numbers (n with rad(n) | sigma(n), OEIS A175200) are
+  listed without sieving, by reading the defining condition backwards: every
+  prime of n must divide sigma(q^a) for another prime power q^a of n, so no
+  prime of n is free. This reaches 10^13 (85,695 terms) where the published
+  b-file stops at 7,271,402,112 (10,000 terms), and extends the counts of
+  prime-perfect numbers from 10^9 to 10^13. Includes three elementary theorems
+  (unique factorisation into connected atoms; infinitude with an O(1)
+  certificate; a closed count of the two-prime elements) and a set of negative
+  results: six candidate invariants that do not predict |S(f)(x)|, measured
+  across 30 local multiplicative functions.
+authors:
+  - family-names: "Ellena Godoy"
+    given-names: "Jorge"
+    email: "jorgell23@gmail.com"
+license: CC-BY-4.0
+version: 1.0.0
+keywords:
+  - number theory
+  - arithmetic functions
+  - prime-abundant numbers
+  - prime-perfect numbers
+  - sum of divisors
+  - radical of an integer
+  - computational number theory
+  - OEIS A175200
+repository-code: "https://github.com/jorgell23-sys/prime-abundant-enumeration"
+references:
+  - type: article
+    title: "Prime-Perfect Numbers"
+    authors:
+      - family-names: "Pollack"
+        given-names: "Paul"
+      - family-names: "Pomerance"
+        given-names: "Carl"
+    journal: "INTEGERS: Electronic Journal of Combinatorial Number Theory"
+    volume: "12A"
+    year: 2012
+    notes: "paper A14"
+    doi: "10.1515/integers-2012-0044"
+  - type: database
+    title: "The On-Line Encyclopedia of Integer Sequences, A175200"
+    authors:
+      - name: "OEIS Foundation Inc."
+    url: "https://oeis.org/A175200"

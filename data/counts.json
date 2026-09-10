@@ -1,0 +1,91 @@
+{
+ "note": "counts include n = 1 where the source does, and say so",
+ "prime_abundant_includes_1": true,
+ "prime_perfect_includes_1": true,
+ "by_decade": {
+  "1e1": {
+   "prime_abundant": 2,
+   "prime_perfect": 2,
+   "sigma_star": 1,
+   "phi_star": 0
+  },
+  "1e2": {
+   "prime_abundant": 7,
+   "prime_perfect": 3,
+   "sigma_star": 11,
+   "phi_star": 5
+  },
+  "1e3": {
+   "prime_abundant": 26,
+   "prime_perfect": 7,
+   "sigma_star": 31,
+   "phi_star": 23
+  },
+  "1e4": {
+   "prime_abundant": 72,
+   "prime_perfect": 12,
+   "sigma_star": 87,
+   "phi_star": 71
+  },
+  "1e5": {
+   "prime_abundant": 192,
+   "prime_perfect": 24,
+   "sigma_star": 212,
+   "phi_star": 193
+  },
+  "1e6": {
+   "prime_abundant": 475,
+   "prime_perfect": 40,
+   "sigma_star": 461,
+   "phi_star": 465
+  },
+  "1e7": {
+   "prime_abundant": 1124,
+   "prime_perfect": 68,
+   "sigma_star": 970,
+   "phi_star": 1034
+  },
+  "1e8": {
+   "prime_abundant": 2490,
+   "prime_perfect": 120,
+   "sigma_star": 1965,
+   "phi_star": 2227
+  },
+  "1e9": {
+   "prime_abundant": 5328,
+   "prime_perfect": 198,
+   "sigma_star": 3913,
+   "phi_star": 4654
+  },
+  "1e10": {
+   "prime_abundant": 11051,
+   "prime_perfect": 333,
+   "sigma_star": 7683,
+   "phi_star": 9405
+  },
+  "1e11": {
+   "prime_abundant": 22295,
+   "prime_perfect": 513,
+   "sigma_star": 14894,
+   "phi_star": 18499
+  },
+  "1e12": {
+   "prime_abundant": 44157,
+   "prime_perfect": 796,
+   "sigma_star": 28535,
+   "phi_star": 35624
+  },
+  "1e13": {
+   "prime_abundant": 85696,
+   "prime_perfect": 1212,
+   "sigma_star": 54239,
+   "phi_star": 67350
+  }
+ },
+ "published_anchor": {
+  "source": "Pollack and Pomerance, Prime-Perfect Numbers, INTEGERS 12A (2012), paper A14, section 1",
+  "quote": "up to 10^9, there are 198 prime-perfect numbers and 5328 prime-abundant numbers",
+  "ours_prime_perfect_1e9": 198,
+  "ours_prime_abundant_1e9": 5328
+ }
+}

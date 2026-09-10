@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img">
+
+  <style>
+    .bg   { fill: none; }
+    .axis { stroke: #888; stroke-width: 1; fill: none; }
+    .grid { stroke: #ccc; stroke-width: .5; fill: none; stroke-dasharray: 3 3; }
+    .lbl  { font: 11px system-ui, sans-serif; fill: #666; }
+    .ttl  { font: bold 13px system-ui, sans-serif; fill: #333; }
+    .a    { stroke: #1f77b4; stroke-width: 2.5; fill: none; }
+    .b    { stroke: #d62728; stroke-width: 2.5; fill: none; }
+    .c    { stroke: #2ca02c; stroke-width: 2.5; fill: none; }
+    .dot  { fill: #1f77b4; }
+    .dotb { fill: #d62728; }
+    .node { fill: #fff; stroke: #1f77b4; stroke-width: 2; }
+    .nlbl { font: bold 13px system-ui, sans-serif; fill: #1f77b4;
+            text-anchor: middle; }
+    .arr  { stroke: #555; stroke-width: 1.8; fill: none;
+            marker-end: url(#head); }
+    @media (prefers-color-scheme: dark) {
+      .lbl { fill: #aaa; } .ttl { fill: #eee; } .node { fill: #222; }
+    }
+  </style>
+  <defs>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+<text class="ttl" x="16" y="22">How many are there below x?</text>
+<path class="grid" d="M70 320.0 H610"/>
+<text class="lbl" x="62" y="324.0" text-anchor="end">10^0</text>
+<path class="grid" d="M70 265.9 H610"/>
+<text class="lbl" x="62" y="269.9" text-anchor="end">10^1</text>
+<path class="grid" d="M70 211.9 H610"/>
+<text class="lbl" x="62" y="215.9" text-anchor="end">10^2</text>
+<path class="grid" d="M70 157.8 H610"/>
+<text class="lbl" x="62" y="161.8" text-anchor="end">10^3</text>
+<path class="grid" d="M70 103.8 H610"/>
+<text class="lbl" x="62" y="107.8" text-anchor="end">10^4</text>
+<path class="grid" d="M70 49.7 H610"/>
+<text class="lbl" x="62" y="53.7" text-anchor="end">10^5</text>
+<path class="axis" d="M70 40 V320 H610"/>
+<text class="lbl" x="70.0" y="338" text-anchor="middle">10^2</text>
+<text class="lbl" x="168.2" y="338" text-anchor="middle">10^4</text>
+<text class="lbl" x="266.4" y="338" text-anchor="middle">10^6</text>
+<text class="lbl" x="364.5" y="338" text-anchor="middle">10^8</text>
+<text class="lbl" x="462.7" y="338" text-anchor="middle">10^10</text>
+<text class="lbl" x="560.9" y="338" text-anchor="middle">10^12</text>
+<path class="a" d="M70.0 274.3 L119.1 243.5 L168.2 219.6 L217.3 196.6 L266.4 175.3 L315.5 155.1 L364.5 136.4 L413.6 118.5 L462.7 101.4 L511.8 84.9 L560.9 68.9 L610.0 53.3"/>
+<circle class="dot" cx="70.0" cy="274.3" r="3"/>
+<circle class="dot" cx="119.1" cy="243.5" r="3"/>
+<circle class="dot" cx="168.2" cy="219.6" r="3"/>
+<circle class="dot" cx="217.3" cy="196.6" r="3"/>
+<circle class="dot" cx="266.4" cy="175.3" r="3"/>
+<circle class="dot" cx="315.5" cy="155.1" r="3"/>
+<circle class="dot" cx="364.5" cy="136.4" r="3"/>
+<circle class="dot" cx="413.6" cy="118.5" r="3"/>
+<circle class="dot" cx="462.7" cy="101.4" r="3"/>
+<circle class="dot" cx="511.8" cy="84.9" r="3"/>
+<circle class="dot" cx="560.9" cy="68.9" r="3"/>
+<circle class="dot" cx="610.0" cy="53.3" r="3"/>
+<path class="b" d="M70.0 294.2 L119.1 274.3 L168.2 261.7 L217.3 245.4 L266.4 233.4 L315.5 220.9 L364.5 207.6 L413.6 195.8 L462.7 183.6 L511.8 173.5 L560.9 163.2 L610.0 153.3"/>
+<circle class="dotb" cx="70.0" cy="294.2" r="3"/>
+<circle class="dotb" cx="119.1" cy="274.3" r="3"/>
+<circle class="dotb" cx="168.2" cy="261.7" r="3"/>
+<circle class="dotb" cx="217.3" cy="245.4" r="3"/>
+<circle class="dotb" cx="266.4" cy="233.4" r="3"/>
+<circle class="dotb" cx="315.5" cy="220.9" r="3"/>
+<circle class="dotb" cx="364.5" cy="207.6" r="3"/>
+<circle class="dotb" cx="413.6" cy="195.8" r="3"/>
+<circle class="dotb" cx="462.7" cy="183.6" r="3"/>
+<circle class="dotb" cx="511.8" cy="173.5" r="3"/>
+<circle class="dotb" cx="560.9" cy="163.2" r="3"/>
+<circle class="dotb" cx="610.0" cy="153.3" r="3"/>
+<text class="lbl" x="266.4" y="39.3" fill="#1f77b4">prime-abundant (85696 at 10^13)</text>
+<text class="lbl" x="266.4" y="255.4" fill="#d62728">prime-perfect (1212 at 10^13)</text>
+<text class="lbl" x="16" y="366">The published b-file stops at 7,271,402,112; the published counts stop at 10^9.</text>
+</svg>

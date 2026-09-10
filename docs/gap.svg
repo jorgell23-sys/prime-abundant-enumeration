@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" width="640" height="330" role="img">
+
+  <style>
+    .bg   { fill: none; }
+    .axis { stroke: #888; stroke-width: 1; fill: none; }
+    .grid { stroke: #ccc; stroke-width: .5; fill: none; stroke-dasharray: 3 3; }
+    .lbl  { font: 11px system-ui, sans-serif; fill: #666; }
+    .ttl  { font: bold 13px system-ui, sans-serif; fill: #333; }
+    .a    { stroke: #1f77b4; stroke-width: 2.5; fill: none; }
+    .b    { stroke: #d62728; stroke-width: 2.5; fill: none; }
+    .c    { stroke: #2ca02c; stroke-width: 2.5; fill: none; }
+    .dot  { fill: #1f77b4; }
+    .dotb { fill: #d62728; }
+    .node { fill: #fff; stroke: #1f77b4; stroke-width: 2; }
+    .nlbl { font: bold 13px system-ui, sans-serif; fill: #1f77b4;
+            text-anchor: middle; }
+    .arr  { stroke: #555; stroke-width: 1.8; fill: none;
+            marker-end: url(#head); }
+    @media (prefers-color-scheme: dark) {
+      .lbl { fill: #aaa; } .ttl { fill: #eee; } .node { fill: #222; }
+    }
+  </style>
+  <defs>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+<text class="ttl" x="16" y="22">Same primes, same arrows &#8212; and 27 times fewer elements</text>
+<text class="ttl" x="30" y="70">&#934;&#8323; = x&#178;+x+1</text>
+<text class="lbl" x="30" y="90">smallest element: 39</text>
+<text class="lbl" x="30" y="108">smallest pair {3, 13}, exponent 1</text>
+<rect x="300" y="54" width="380" height="26" rx="4" fill="#1f77b4" opacity=".75"/>
+<text class="lbl" x="686" y="73">2,220 elements below 10^10</text>
+<text class="ttl" x="30" y="180">&#934;&#8326; = x&#178;&#8722;x+1</text>
+<text class="lbl" x="30" y="200">smallest element: 100,009</text>
+<text class="lbl" x="30" y="218">smallest pair {7, 73}, exponent 4</text>
+<rect x="300" y="164" width="217" height="26" rx="4" fill="#d62728" opacity=".75"/>
+<text class="lbl" x="523" y="183">81 elements below 10^10</text>
+<text class="lbl" x="30" y="290">A density counts whether an arrow exists.</text>
+<text class="lbl" x="30" y="308">It cannot see at what exponent &#8212; and that is what decides the count.</text>
+</svg>

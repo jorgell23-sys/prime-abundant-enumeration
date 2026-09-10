@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prime-abundant numbers, explained from scratch</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.2rem 5rem;
+         font: 17px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: .4em 0 .2em; }
+  h2 { font-size: 1.25rem; margin: 2.2em 0 .4em; }
+  h3 { font-size: 1rem; margin: 1.4em 0 .3em; }
+  .lead { font-size: 1.1rem; opacity: .85; }
+  code, .m { font-family: ui-monospace, "SF Mono", Menlo, monospace;
+             font-size: .93em; }
+  figure { margin: 1.6em 0; }
+  img { width: 100%; height: auto; }
+  figcaption { font-size: .88rem; opacity: .75; margin-top: .4em; }
+  table { border-collapse: collapse; width: 100%; font-size: .94rem;
+          margin: 1em 0; }
+  th, td { text-align: right; padding: .35em .6em;
+           border-bottom: 1px solid rgba(128,128,128,.3); }
+  th:first-child, td:first-child { text-align: left; }
+  .box { border-left: 3px solid #1f77b4; padding: .1em 0 .1em 1em;
+         margin: 1.4em 0; opacity: .95; }
+  .warn { border-left-color: #d62728; }
+  dl dt { font-weight: 600; margin-top: .8em; }
+  dl dd { margin: 0 0 0 1.2em; opacity: .9; }
+  a { color: #1f77b4; }
+  .lang { font-size: .9rem; opacity: .8; }
+</style>
+</head>
+<body>
+
+<p class="lang"><a href="es/">Leer en español</a></p>
+
+<h1>Numbers that share their primes with the sum of their divisors</h1>
+
+<p class="lead">This page explains, from zero, what was found and how you can
+check it yourself. No background is assumed beyond what a prime number is.</p>
+
+<h2 id="question">1. The question, with apples and pears</h2>
+
+<p>Take a number, say <span class="m">12</span>. Add up all the numbers that
+divide it, itself included: <span class="m">1 + 2 + 3 + 4 + 6 + 12 = 28</span>.
+Mathematicians write that sum <span class="m">&sigma;(12) = 28</span>.</p>
+
+<p>Now compare the <em>primes</em> involved. The primes of
+<span class="m">12 = 2&sup2; &middot; 3</span> are 2 and 3. The primes of
+<span class="m">28 = 2&sup2; &middot; 7</span> are 2 and 7. The prime 3 is in
+<span class="m">12</span> and <strong>not</strong> in <span class="m">28</span>.</p>
+
+<p>Sometimes that does not happen. Take <span class="m">6</span>:
+<span class="m">&sigma;(6) = 1 + 2 + 3 + 6 = 12</span>, whose primes are 2 and
+3 — exactly the primes of 6. Every prime of the number is also a prime of the
+sum.</p>
+
+<p><strong>Those numbers have a name</strong>: they are called
+<em>prime-abundant</em>, and the question is simply <em>which ones are they, and
+how many are there below a given size?</em></p>
+
+<h2 id="words">2. The words you need, and no more</h2>
+
+<dl>
+  <dt>Prime</dt>
+  <dd>A number greater than 1 divisible only by 1 and itself: 2, 3, 5, 7, 11…</dd>
+  <dt><span class="m">&sigma;(n)</span></dt>
+  <dd>The sum of all divisors of <span class="m">n</span>, itself included.
+      <span class="m">&sigma;(10) = 1 + 2 + 5 + 10 = 18</span>.</dd>
+  <dt><span class="m">rad(n)</span>, the radical</dt>
+  <dd>Multiply the distinct primes of <span class="m">n</span>, each once.
+      <span class="m">rad(12) = 2 &middot; 3 = 6</span>, and
+      <span class="m">rad(8) = 2</span>. It is the number stripped of
+      repetitions.</dd>
+  <dt>Prime-abundant</dt>
+  <dd><span class="m">rad(n)</span> divides <span class="m">&sigma;(n)</span>.
+      Same thing as: every prime of <span class="m">n</span> is a prime of
+      <span class="m">&sigma;(n)</span>.</dd>
+  <dt>Sieving</dt>
+  <dd>The obvious way to find them: try 2, then 3, then 4, then 5… and keep the
+      ones that pass. It works, and it is what runs out of steam.</dd>
+</dl>
+
+<h2 id="recipe">3. The recipe, step by step</h2>
+
+<p>The whole finding comes from reading the condition backwards.</p>
+
+<p>Suppose <span class="m">n</span> is prime-abundant and <span class="m">p</span>
+is one of its primes. Then <span class="m">p</span> divides
+<span class="m">&sigma;(n)</span>. But <span class="m">&sigma;</span> breaks into
+a product over the prime powers of <span class="m">n</span>, and a prime divides
+a product only if it divides one of the factors. So:</p>
+
+<div class="box">
+<p><strong>Every prime of <span class="m">n</span> shows up when you factor
+<span class="m">&sigma;(q<sup>a</sup>)</span> for some other prime power
+<span class="m">q<sup>a</sup></span> of <span class="m">n</span>.</strong>
+No prime is free. They are all already there, waiting inside a factorisation.</p>
+</div>
+
+<p>Draw it: put the primes of <span class="m">n</span> as dots, and draw an
+arrow from <span class="m">q</span> to <span class="m">p</span> whenever
+<span class="m">p</span> divides <span class="m">&sigma;(q<sup>a</sup>)</span>.
+The condition becomes visual: <strong>every dot must have an arrow coming
+in</strong>.</p>
+
+<figure>
+  <img src="digraph.svg" alt="Two diagrams. On the left, 6 = 2·3 with arrows in
+       both directions between 2 and 3. On the right, 12 = 2²·3, with an arrow
+       from 3 to 2 but nothing arriving at 3.">
+  <figcaption>The rule, drawn. On the left both primes are covered and 6
+  belongs. On the right the 3 has no arrow coming in — and indeed
+  <span class="m">&sigma;(12) = 28</span> is not divisible by
+  <span class="m">rad(12) = 6</span>.</figcaption>
+</figure>
+
+<p>And a diagram where every dot has an arrow coming in must contain a
+<strong>loop</strong>: start anywhere, walk backwards along the arrows, and since
+there are finitely many dots you must eventually revisit one. So every such
+<span class="m">n</span> is built from loops, plus whatever hangs off them.</p>
+
+<p><strong>That is the recipe.</strong> Instead of trying every integer, you
+build the loops — and every prime you need comes out of a factorisation you were
+going to do anyway.</p>
+
+<h2 id="try">4. Do one by hand</h2>
+
+<p>Start from <span class="m">24 = 2&sup3; &middot; 3</span>. It is
+prime-abundant: <span class="m">&sigma;(24) = 60</span> and
+<span class="m">rad(24) = 6</span>, and 6 divides 60.</p>
+
+<p>Now factor <span class="m">&sigma;(2&sup3;) = 1+2+4+8 = 15 = 3 &middot; 5</span>.
+The prime <strong>5</strong> appears there, and 5 does not divide 24. So attach
+it: in <span class="m">24 &middot; 5 = 120</span> the new dot 5 has an arrow
+coming in (from 2), and the old dots keep theirs, because their exponents did not
+change.</p>
+
+<p>Check it: <span class="m">rad(120) = 30</span> and
+<span class="m">&sigma;(120) = 360 = 12 &middot; 30</span>. It works. And the
+same argument works for <span class="m">24 &middot; 25 = 600</span> and
+<span class="m">24 &middot; 125 = 3000</span>, for ever — which proves there are
+infinitely many, in one line.</p>
+
+<h2 id="origin">5. Where the information comes from</h2>
+
+<p>Nothing here is quoted from memory. Three sources, all checkable:</p>
+
+<ul>
+  <li>The <strong>terms and counts</strong> in <code>data/</code> are produced by
+      the program in <code>src/</code>, not typed in.</li>
+  <li>The <strong>catalogue entry</strong> is
+      <a href="https://oeis.org/A175200">OEIS A175200</a>, submitted in 2010,
+      with a table of <span data-fact="bfile_terms">10,000</span> terms computed
+      by Donovan Johnson, the largest being
+      <span data-fact="bfile_last">7,271,402,112</span>.</li>
+  <li>The <strong>published counts</strong> are from Pollack and Pomerance,
+      <em>Prime-Perfect Numbers</em>, INTEGERS 12A (2012): up to
+      <span class="m">10<sup>9</sup></span> there are
+      <span data-fact="pp_1e9">198</span> prime-perfect and
+      <span data-fact="pa_1e9">5,328</span> prime-abundant numbers.</li>
+</ul>
+
+<p>That last line is the anchor: our program reproduces both numbers exactly. A
+method that agrees with a published count is a method you can start trusting.</p>
+
+<h2 id="findings">6. What was found</h2>
+
+<p>The list now reaches <span class="m">10<sup>13</sup></span> instead of
+<span class="m">10<sup>7</sup></span>:
+<span data-fact="terms_1e13">85,695</span> terms, against the
+<span class="m">10,000</span> published.</p>
+
+<figure>
+  <img src="growth.svg" alt="Log-log plot of how many prime-abundant and
+       prime-perfect numbers there are below x, from 10^2 to 10^13. Both curves
+       rise steadily and bend downwards.">
+  <figcaption>How the count grows. Both curves bend: the numbers get rarer as
+  you go up, and they keep getting rarer without settling anywhere.</figcaption>
+</figure>
+
+<p>The second finding is a negative one, and it is the more interesting.
+The same construction works for other functions in place of
+<span class="m">&sigma;</span> — and <strong>nothing simple predicts how many
+elements each one has</strong>. Two functions can have <em>exactly the same
+primes and the same arrows</em> and differ by a factor of 27.</p>
+
+<figure>
+  <img src="gap.svg" alt="Two bars comparing the two cyclotomic functions:
+       Phi_3 with 2,220 elements below 10^10 and Phi_6 with 81.">
+  <figcaption>Why: the arrows of <span class="m">&Phi;<sub>6</sub></span> demand
+  a fourth power where those of <span class="m">&Phi;<sub>3</sub></span> demand a
+  first. Its smallest element is
+  <span data-fact="smallest_phi6">100,009</span> instead of 39 — and a high
+  exponent is a big number. A density counts <em>whether</em> an arrow exists,
+  never <em>at what height</em>.</figcaption>
+</figure>
+
+<p>Six candidate explanations were tested across
+<span data-fact="functions">30</span> functions and all six failed, each against
+a rule written down before the data was looked at.</p>
+
+<h2 id="checking">7. How you know it is not wrong</h2>
+
+<p>Every check compares <strong>sets, element by element</strong> — never sizes.
+An enumerator that loses one element and gains another counts the same and is
+wrong. (During this work, one cross-check did report the three correct totals
+with all three lists shifted by two. Only comparing the sets caught it.)</p>
+
+<table>
+  <tr><th>checked against</th><th>up to</th><th>result</th></tr>
+  <tr><td>a plain sieve over every integer</td><td>10<sup>7</sup></td>
+      <td>identical</td></tr>
+  <tr><td>an independent segmented sieve</td><td>10<sup>10</sup></td>
+      <td>identical</td></tr>
+  <tr><td>the OEIS table by Donovan Johnson</td><td>7,271,402,112</td>
+      <td>identical</td></tr>
+  <tr><td>the counts published by Pollack &amp; Pomerance</td>
+      <td>10<sup>9</sup></td><td>exact</td></tr>
+</table>
+
+<p>Beyond <span class="m">10<sup>10</sup></span> every single term is re-checked
+on its own, by factoring it from scratch. Zero failures in 207,284 terms. And
+you can run all of it:</p>
+
+<pre><code>python verify.py</code></pre>
+
+<h2 id="useful">8. What it is good for</h2>
+
+<p>Three things, honestly small:</p>
+
+<ul>
+  <li><strong>More data on an open question.</strong> Pomerance conjectured in
+      the 1970s that these numbers are rarer than any power of
+      <span class="m">x</span>. Four more decades of counts is four more decades
+      of evidence to test that against.</li>
+  <li><strong>A method that transfers.</strong> The same argument applies to any
+      multiplicative function that never shares a prime with its own argument.</li>
+  <li><strong>A cleared field.</strong> Knowing which six explanations
+      <em>fail</em> saves the next person from trying them.</li>
+</ul>
+
+<h2 id="notclaim">9. What this does <em>not</em> say</h2>
+
+<div class="box warn">
+<ul>
+  <li><strong>It does not claim the method is new.</strong> It follows directly
+      from a characterisation that is not new. No published version was found —
+      that is not the same as there being none.</li>
+  <li><strong>It proves nothing about infinity.</strong> The counts stop at
+      <span class="m">10<sup>13</sup></span>. What happens beyond is not
+      measured, and measurement is not proof.</li>
+  <li><strong>It does not predict how many there are.</strong> Six explanations
+      were ruled out; the best one left is off by a factor of 2.3.</li>
+  <li><strong>The exhaustive re-check stops at
+      <span class="m">10<sup>10</sup></span>.</strong> Past that, each term is
+      verified individually — which catches wrong entries, not missing ones.</li>
+</ul>
+</div>
+
+<h2 id="glossary">Glossary</h2>
+
+<dl>
+  <dt>Divisor</dt><dd>A number that divides another exactly. The divisors of 6
+    are 1, 2, 3 and 6.</dd>
+  <dt>Prime power</dt><dd>A prime multiplied by itself some number of times:
+    <span class="m">2&sup3; = 8</span>.</dd>
+  <dt>Multiplicative function</dt><dd>One where
+    <span class="m">f(ab) = f(a)f(b)</span> whenever <span class="m">a</span> and
+    <span class="m">b</span> share no prime. <span class="m">&sigma;</span> is
+    one.</dd>
+  <dt>Perfect number</dt><dd>One equal to the sum of its <em>proper</em>
+    divisors: 6, 28, 496. Every even perfect number is prime-abundant.</dd>
+  <dt>Directed graph</dt><dd>Dots with arrows between them. Here the dots are
+    primes.</dd>
+  <dt>Cycle</dt><dd>A closed walk along the arrows, returning where it
+    started.</dd>
+</dl>
+
+<h2 id="biblio">Where to read more</h2>
+
+<h3>If you are starting from zero</h3>
+<ul>
+  <li>OEIS, <a href="https://oeis.org/A000203">A000203</a> — the sum-of-divisors
+      function, with examples.</li>
+  <li>OEIS, <a href="https://oeis.org/A007947">A007947</a> — the radical.</li>
+  <li>OEIS, <a href="https://oeis.org/A175200">A175200</a> — the sequence this
+      page is about.</li>
+</ul>
+
+<h3>If you have some university mathematics</h3>
+<ul>
+  <li>G. H. Hardy and E. M. Wright, <em>An Introduction to the Theory of
+      Numbers</em>, chapters on multiplicative functions and perfect
+      numbers.</li>
+  <li>OEIS, <a href="https://oeis.org/A007691">A007691</a> — multiperfect
+      numbers, a subset of these.</li>
+</ul>
+
+<h3>The research literature</h3>
+<ul>
+  <li>Paul Pollack and Carl Pomerance, <em>Prime-Perfect Numbers</em>, INTEGERS
+      <strong>12A</strong> (2012), paper A14.
+      <a href="https://doi.org/10.1515/integers-2012-0044">doi:10.1515/integers-2012-0044</a>
+      — the definitions, the bounds, and the conjecture.</li>
+  <li>The proofs and the full data for this page:
+      <a href="../RESULT.md">RESULT.md</a>. What was searched and what was not
+      found: <a href="../PRIOR_ART.md">PRIOR_ART.md</a>.</li>
+</ul>
+
+<hr>
+<p class="lang"><strong>Jorge Ellena Godoy</strong> — responsible for the
+correctness of everything published here. System design and research direction
+are the author's; the mathematical results were produced by an automated system
+(Claude, Anthropic) under that direction.</p>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" width="640" height="290" role="img">
+
+  <style>
+    .bg   { fill: none; }
+    .axis { stroke: #888; stroke-width: 1; fill: none; }
+    .grid { stroke: #ccc; stroke-width: .5; fill: none; stroke-dasharray: 3 3; }
+    .lbl  { font: 11px system-ui, sans-serif; fill: #666; }
+    .ttl  { font: bold 13px system-ui, sans-serif; fill: #333; }
+    .a    { stroke: #1f77b4; stroke-width: 2.5; fill: none; }
+    .b    { stroke: #d62728; stroke-width: 2.5; fill: none; }
+    .c    { stroke: #2ca02c; stroke-width: 2.5; fill: none; }
+    .dot  { fill: #1f77b4; }
+    .dotb { fill: #d62728; }
+    .node { fill: #fff; stroke: #1f77b4; stroke-width: 2; }
+    .nlbl { font: bold 13px system-ui, sans-serif; fill: #1f77b4;
+            text-anchor: middle; }
+    .arr  { stroke: #555; stroke-width: 1.8; fill: none;
+            marker-end: url(#head); }
+    @media (prefers-color-scheme: dark) {
+      .lbl { fill: #aaa; } .ttl { fill: #eee; } .node { fill: #222; }
+    }
+  </style>
+  <defs>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+<text class="ttl" x="16" y="22">The rule, drawn: every prime needs an arrow coming in</text>
+<text class="lbl" x="60" y="60">n = 6 = 2 &#183; 3 &#8212; belongs</text>
+<circle class="node" cx="90" cy="140" r="22"/><text class="nlbl" x="90" y="145">2</text>
+<circle class="node" cx="230" cy="140" r="22"/><text class="nlbl" x="230" y="145">3</text>
+<path class="arr" d="M114 128 Q161 94 208 128"/>
+<path class="arr" d="M208 152 Q161 186 114 152"/>
+<text class="lbl" x="120" y="96">&#963;(2) = 3</text>
+<text class="lbl" x="118" y="200">&#963;(3) = 4 = 2&#178;</text>
+<text class="lbl" x="60" y="250">Both covered. A cycle of length 2.</text>
+<text class="lbl" x="390" y="60">n = 12 = 2&#178; &#183; 3 &#8212; does not</text>
+<circle class="node" cx="420" cy="140" r="22"/><text class="nlbl" x="420" y="145">2</text>
+<circle class="node" cx="560" cy="140" r="22"/><text class="nlbl" x="560" y="145">3</text>
+<path class="arr" d="M538 152 Q491 186 444 152"/>
+<text class="lbl" x="436" y="200">&#963;(3) = 4 = 2&#178;, so 3 &#8594; 2</text>
+<text class="lbl" x="392" y="96">but &#963;(2&#178;) = 7, and 3 &#8942; 7:</text>
+<text class="lbl" x="392" y="114">nothing covers the 3</text>
+<text class="lbl" x="390" y="250">&#963;(12) = 28, and 6 does not divide 28.</text>
+</svg>
